@@ -36,6 +36,7 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
     @Override
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         Toast.makeText(this, "Initialized YouTube Player Successfully", Toast.LENGTH_SHORT);
+        Log.d("PlaybackEventListener", "youtube player initialized successfully");
         youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
         youTubePlayer.setPlaybackEventListener(playbackEventListener);
 
@@ -48,17 +49,20 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
         @Override
         public void onPlaying() {
-            Toast.makeText(YouTubeActivity.this,"playing!",Toast.LENGTH_SHORT);
+            Log.d("PlaybackEventListener", "playing!");
+            Toast.makeText(YouTubeActivity.this,"playing!",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onPaused() {
-            Toast.makeText(YouTubeActivity.this,"paused!",Toast.LENGTH_SHORT);
+            Log.d("PlaybackEventListener", "paused!");
+            Toast.makeText(YouTubeActivity.this,"paused!",Toast.LENGTH_LONG).show();
         }
 
         @Override
         public void onStopped() {
-            Toast.makeText(YouTubeActivity.this,"stopped!",Toast.LENGTH_SHORT);
+            Log.d("PlaybackEventListener", "stopped!");
+            Toast.makeText(YouTubeActivity.this,"stopped!",Toast.LENGTH_LONG).show();
         }
 
         @Override
@@ -85,12 +89,12 @@ public class YouTubeActivity extends YouTubeBaseActivity implements YouTubePlaye
 
         @Override
         public void onAdStarted() {
-            Toast.makeText(YouTubeActivity.this,"not another ad!",Toast.LENGTH_SHORT);
+            Toast.makeText(YouTubeActivity.this,"not another ad!",Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onVideoStarted() {
-            Toast.makeText(YouTubeActivity.this,"video just started",Toast.LENGTH_SHORT);
+            Toast.makeText(YouTubeActivity.this,"video just started",Toast.LENGTH_SHORT).show();
         }
 
         @Override
