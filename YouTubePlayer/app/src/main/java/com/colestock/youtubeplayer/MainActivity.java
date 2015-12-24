@@ -1,12 +1,18 @@
 package com.colestock.youtubeplayer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btnPlaySingle;
+    private Button btnStandalone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        btnPlaySingle = (Button) findViewById(R.id.btnPlaySingle);
+        btnPlaySingle.setOnClickListener(this);
+        btnStandalone = (Button) findViewById(R.id.btnStandalone);
+        btnStandalone.setOnClickListener(this);
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -23,6 +33,25 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = null;
+        switch(v.getId()) {
+            case R.id.btnPlaySingle:
+                intent = new Intent(this,YouTubeActivity.class);
+                break;
+            case R.id.btnStandalone:
+                intent = new Intent(this,StandaloneActivity.class);
+                break;
+            default:
+                break;
+        }
+
+        if (intent != null) {
+            startActivity(intent);
+        }
     }
 
     @Override
