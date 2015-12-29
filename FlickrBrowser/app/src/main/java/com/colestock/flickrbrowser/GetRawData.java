@@ -15,7 +15,7 @@ enum DownloadStatus {IDLE, PROCESSING, NOT_INITIALIZED, FAILED_OR_EMPTY, OK};
 public class GetRawData {
     private String LOG_TAG = GetRawData.class.getSimpleName();
     private String dataUrl;
-    private String data;
+    private String rawData;
     private DownloadStatus downloadStatus;
 
     public GetRawData(String dataUrl) {
@@ -25,12 +25,16 @@ public class GetRawData {
 
     public void reset() {
         this.downloadStatus = DownloadStatus.IDLE;
-        this.data = null;
+        this.rawData = null;
         this.dataUrl = null;
     }
 
-    public String getData() {
-        return this.data;
+    public String getRawData() {
+        return this.rawData;
+    }
+
+    public void setDataUrl(String dataUrl) {
+        this.dataUrl = dataUrl;
     }
 
     public void execute() {
@@ -106,10 +110,10 @@ public class GetRawData {
         }
 
         @Override
-        protected void onPostExecute(String rawData) {
-            Log.v(LOG_TAG, "Data returned was " + rawData);
-            data = rawData;
-            if(rawData == null) {
+        protected void onPostExecute(String data) {
+            Log.v(LOG_TAG, "Data returned was " + data);
+            rawData = data;
+            if(data == null) {
                 if(dataUrl == null) {
                     downloadStatus = DownloadStatus.NOT_INITIALIZED;
                 } else {
